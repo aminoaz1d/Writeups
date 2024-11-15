@@ -1,0 +1,8 @@
+justin@LAPTOP-FPV5K84L:/mnt/c/Users/tdaddy/ctf/vortex/vortex00$ python vortex0.py
+[+] Opening connection to vortex.labs.overthewire.org on port 5842: Done
+[*] Switching to interactive mode
+Username: vortex1 Password: Gq#qu3bF3[*] Got EOF while reading in interactive
+$
+$
+[*] Closed connection to vortex.labs.overthewire.org port 5842
+[*] Got EOF while sending in interactive

@@ -1,0 +1,7 @@
+file opens connection to 0:1337 via UDP and sends the password
+
+nc -u -lp 1337
+ 
+/behemoth/behemoth5
+
+mayiroeche

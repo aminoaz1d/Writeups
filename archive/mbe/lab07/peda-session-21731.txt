@@ -1,0 +1,5 @@
+break small_str
+disable $bpnum
+break *(main+785)
+disable $bpnum
+
