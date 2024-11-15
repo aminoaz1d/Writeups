@@ -1,3 +1,2 @@
-/**/.*  # ignore all dotted files
-/**/.*/ # ignore all dotted folders
+**/.obsidian/
 !/.gitignore # leave gitignore
