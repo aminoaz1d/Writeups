@@ -10,7 +10,7 @@ The first terminal challenge is meant to teach the user how to use the terminals
 
 When the challenge is first opened, I was presented with a prompt:
 
-![The initial game prompt which reads "Click in the upper pane of this termina, type 'Answer,' and press Enter](img/1.first_terminal_blank.PNG)
+![The initial game prompt which reads "Click in the upper pane of this terminal, type 'Answer,' and press Enter](img/1.first_terminal_blank.PNG)
 
 Following the instructions, I typed `answer` and pressed the Enter key to solve the challenge.
 
@@ -55,12 +55,7 @@ Using that information, I wrote a quick python script to output the correct grou
 
 import numpy
 
-wordSets = {
-            1: ["Tinsel", "Sleigh", "Belafonte", "Bag", "Comet", "Garland", "Jingle Bells", "Mittens", "Vixen", "Gifts", "Star", "Crosby", "White Christmas", "Prancer", "Lights", "Blitzen"],
-            2: ["Nmap", "burp", "Frida", "OWASP Zap", "Metasploit", "netcat", "Cycript", "Nikto", "Cobalt Strike", "wfuzz", "Wireshark", "AppMon", "apktool", "HAVOC", "Nessus", "Empire"],
-            3: ["AES", "WEP", "Symmetric", "WPA2", "Caesar", "RSA", "Asymmetric", "TKIP", "One-time Pad", "LEAP", "Blowfish", "hash", "hybrid", "Ottendorf", "3DES", "Scytale"],
-            4: ["IGMP", "TLS", "Ethernet", "SSL", "HTTP", "IPX", "PPP", "IPSec", "FTP", "SSH", "IP", "IEEE 802.11", "ARP", "SMTP", "ICMP", "DNS"]
-        }
+wordSets = { ...omitted for brevity... }
         
 correctSets = [
             [0, 5, 10, 14], # Set 1
@@ -258,11 +253,11 @@ In the event the Elf lands on a cell which contains one of those Entities, it at
 
 ```javascript
 if (this.isPointInAnySegment(nextPoint) || entityHere) {
-            if (entityHere) return this.segments[0][0]; // fix this
-            return nextPoint;
-        } else {
-            return;
-        }   
+	if (entityHere) return this.segments[0][0]; // fix this
+		return nextPoint;
+	} else {
+		return;
+	}   
 ```
 
 However, `this.segments[0][0]` does not *actually* point to the beginning of the Elf's path, but to the first segment *placed* on the board. In this way, you can jump to any square that is not blocked with a rock (aka a Blocker in-game) by following the process below:
