@@ -897,7 +897,9 @@ Attempting to teleport landed me in the Shenanigans purgatory:
 There's an exit at the back that takes you nowhere! This will work on seemingly any invalid destination string. As far as I can tell this has been around in the game for a few years.
 
 Neat!
+### Extra: Jail breakout
 
+This setup runs in a `tmuxp` environment to give us multiple panes. `bp`, the program that runs in the bottom pane, does its best to lock us into a fairly limited `pwsh` Powershell environment. However, using `Ctrl-b W` we can enter the list windows view where we can interact with the underlying `tmux` session a bit better. Using `:new` opens a `bash` shell running as `init`. If you do the breakout before entering `y` to start the challenge, some setup (carried out in the executables `bp` and `tp`, which are PyInstaller files and can be compiled) won't have happened and you can find out about the internals of the challenge. Kind of fund; works on other challenges (like `curling`) too.
 ## Conclusion
 
 Act 2 was more technical and fun, even if TGC wrote a horribly mean challenge (that didn't require Python _or_ Google Maps) with a nice little side quest. [Onward!](../act3/README.md)
