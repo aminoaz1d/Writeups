@@ -1,8 +1,8 @@
 # HHC24-writeup
+
 Writeups for SANS Holiday Hack Challenge 2024
 
 ![A snowy cartoon house with a cannon and some other silly things. It is a cropped copy of the official banner.](img/title_img.jpg)
-
 
 Writeups:
 

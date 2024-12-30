@@ -147,6 +147,7 @@ This reveals the same list of `2,6,7,8`. Realistically, this was enough to guess
 When I clicked on the sticky note it was shown much more clearly:
 
 ![A sticky note showing some numbers separated by colons.](img/2.frosty_keys_hhc2024-stickynote.png)
+
 Using the [book](https://frost-y-book.com/) we were instructed to find before the challenge, each of these sets of numbers corresponds to `[page]:[word]:[char]` for a total of 5 characters:
 
 ![A book with the letter S circled as it is the 1st character of the 6th word of the 2nd page.](img/2.frosty_keys_book.PNG)
@@ -160,6 +161,7 @@ The first hint corresponds to the character `S` as it is the first character of 
 | 6:1:1  | N         | 6             |
 | 3:10:4 | T         | 8             |
 | 14:8:3 | A         | 2             |
+
 This method of encoding is known as an Ottendorf Cipher, which is alluded to in the game's source:
 
 ```javascript
@@ -170,7 +172,7 @@ After decoding the cipher, I discovered the secret word was `SANTA`. Unsurprisin
 
 ![The keypad displays the solution, 72682, and an overlay on the screen reads "Success! You have defeated the Frosty Keypad!!!!](img/2.frosty_keys_silver.PNG)
 
-Upon success, you are rewarded with a file named `shreds.zip` to be used in [Challenge 3: Hardware Hacking 101 Part 1](#### Challenge 3: Hardware Hacking 101 Part 1)
+Upon success, you are rewarded with a file named `shreds.zip` to be used in Challenge 3: Hardware Hacking 101 Part 1.
 
 ### Gold
 
