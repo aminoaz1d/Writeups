@@ -1,7 +1,5 @@
 # ACT III
 
-[Back to main](../README.md)
-
 ## Challenge 1: SantaVision
 
 We are told we need to remove some admin privileges from Santa's surveillance system. After spinning up our instance with GateXOR, we start a port scan:
@@ -283,10 +281,13 @@ In short, the library first looped over the file contents and XORed them with th
 
 `(file_contents ^ nonce) & (nonce ^ nonce) --> (file_contents ^ nonce) & 0 --> 0`
 
+There was still one final hiccup - ensuring that the `nonce` bytes were XORed with each other, rather than with other parts of the file path. Taking a step back from the simplified model we used above, it was important to remember that the algorithm was moving through each parameter and the nonce one byte at a time and XORing the two selected bytes together. Which exact byte it was selecting is governed by a modulus (remainder) operation with an internal `count` variable and the length of the parameter we are selecting the byte from (`filename` and `nonce`). To ensure byte 0 of the nonce was being XORed with byte 0 of our malicious filename (that is, byte 0 of the nonce would be XORed with itself), I needed to ensure that the results of the modulus operations was equal. This was fairly easy, luckily, as we needed only to ensure that the length of the filename was a multiple of the length of the nonce, which was eight bytes long. To do this in a file path, we can use repeated instances of the `/` character as they have no effect on the absolute path when normalized from a relative path (e.g. `/etc/////passwd == /etc/passwd`). 
+
 Remembering this, I modified the directory traversal payload to do the following:
 1. Include the `nonce` value twice to ensure the digest is equal to `00000000000000000000000000000000`
 2. Use directory traversal to back the `nonce` values out of the path when normalized
-3. Used directory traversal to access the file I want (for the test case we'll use `/etc/passwd`)
+3. Add extra `/` characters so `len(filename) % 8 == 0`
+4. Use directory traversal to access the file I want (for the test case we'll use `/etc/passwd`)
 Which yielded:
 
 [`https://api.frostbit.app/view/~%2585%25FF%2540%2598%251A%25C0H~%2585%25FF%2540%2598%251A%25C0H%25%252f%252f%252f%252f%252f%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fetc%252fpasswd/32345881-8b17-4a10-b5c2-033a89c58d1e/status?digest=00000000000000000000000000000000&debug=1`](https://api.frostbit.app/view/~%2585%25FF%2540%2598%251A%25C0H~%2585%25FF%2540%2598%251A%25C0H%25%252f%252f%252f%252f%252f%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fetc%252fpasswd/32345881-8b17-4a10-b5c2-033a89c58d1e/status?digest=00000000000000000000000000000000&debug=1)
