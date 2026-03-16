@@ -63,6 +63,6 @@ the "win" var is at &map-4, so all we need to do is:
 and we print the flag.""" % PAYLOAD.decode('latin1'))
 
 io.sendline(PAYLOAD)
-
+io.readuntil("flage")
 io.interactive()
 
